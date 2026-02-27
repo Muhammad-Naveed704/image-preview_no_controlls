@@ -77,6 +77,9 @@ Outputs in `release/`:
 - **Image Previewer x.x.x.exe** — Portable executable
 
 For other platforms: `npm run dist`
+<img width="1197" height="805" alt="image" src="https://github.com/user-attachments/assets/6f492c41-50df-4153-a28a-08645326cf69" />
+<img width="1222" height="826" alt="image" src="https://github.com/user-attachments/assets/4ec54368-1e74-45db-afcc-1b65db933ed4" />
+
 
 
 
@@ -90,3 +93,4 @@ For other platforms: `npm run dist`
 ## License
 
 MIT
+
