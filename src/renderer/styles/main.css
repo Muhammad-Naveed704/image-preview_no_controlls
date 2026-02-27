@@ -1,0 +1,285 @@
+/**
+ * Global and layout styles for the Image Previewer.
+ * Dark, professional theme; centered content; no edit/delete UI.
+ */
+
+/* -------------------------------------------------------------------------
+   Reset & base
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: #e0e0e0;
+  background: #0d0d0d;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+}
+
+/* -------------------------------------------------------------------------
+   App layout
+   ------------------------------------------------------------------------- */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #0d0d0d;
+}
+
+.app--fullscreen .app__header,
+.app--fullscreen .app__footer {
+  opacity: 0.9;
+}
+
+.app--loading,
+.app--error,
+.app--empty {
+  align-items: center;
+  justify-content: center;
+}
+
+.app__loading {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.app__error {
+  text-align: center;
+  color: #e0e0e0;
+  max-width: 400px;
+}
+
+.app__error p {
+  margin: 0 0 1rem;
+}
+
+.app__retry {
+  padding: 0.5rem 1rem;
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.app__retry:hover {
+  background: #333;
+}
+
+/* Empty state: Open Folder */
+.app__empty {
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.app__empty p {
+  margin: 0 0 0.5rem;
+}
+
+.app__empty-hint {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 0 !important;
+}
+
+/* -------------------------------------------------------------------------
+   Header: zoom + fullscreen
+   ------------------------------------------------------------------------- */
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.75rem 1rem;
+  background: #141414;
+  border-bottom: 1px solid #252525;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Zoom bar
+   ------------------------------------------------------------------------- */
+.zoom-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+}
+
+.zoom-bar__btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #252525;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.zoom-bar__btn:hover:not(:disabled) {
+  background: #333;
+}
+
+.zoom-bar__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.zoom-bar__percent {
+  min-width: 56px;
+  padding: 0 0.5rem;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #b0b0b0;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.zoom-bar__percent:hover {
+  background: #252525;
+  color: #e0e0e0;
+}
+
+/* -------------------------------------------------------------------------
+   Controls (fullscreen only)
+   ------------------------------------------------------------------------- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controls__btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.controls__btn:hover:not(:disabled) {
+  background: #252525;
+  border-color: #3a3a3a;
+}
+
+.controls__btn--fullscreen {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   Main: image viewer area
+   ------------------------------------------------------------------------- */
+.app__main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+}
+
+/* -------------------------------------------------------------------------
+   Image viewer (zoom + pan)
+   ------------------------------------------------------------------------- */
+.image-viewer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #0d0d0d;
+}
+
+.image-viewer--empty {
+  background: #141414;
+}
+
+.image-viewer__placeholder {
+  color: #555;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.image-viewer__inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.image-viewer__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+   Footer: image info
+   ------------------------------------------------------------------------- */
+.app__footer {
+  padding: 0.5rem 1rem;
+  background: #141414;
+  border-top: 1px solid #252525;
+  flex-shrink: 0;
+}
+
+.image-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #888;
+}
+
+.image-info__name {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-info__meta {
+  color: #666;
+}
